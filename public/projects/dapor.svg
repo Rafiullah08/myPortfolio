@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" fill="none">
+  <rect width="1200" height="720" fill="#0A0A0A"/>
+  <rect x="0" y="0" width="1200" height="720" fill="url(#gold)"/>
+  <defs>
+    <linearGradient id="gold" x1="0" y1="0" x2="1200" y2="720">
+      <stop stop-color="#111111"/>
+      <stop offset="1" stop-color="#3F2E14"/>
+    </linearGradient>
+  </defs>
+  <rect x="80" y="80" width="1040" height="560" rx="8" fill="#0B0B0B" stroke="#C6A15B" stroke-width="2"/>
+  <text x="120" y="200" fill="#C6A15B" font-family="Times New Roman, serif" font-size="28" letter-spacing="8">DA'POR MILLIONAIRES</text>
+  <text x="120" y="300" fill="#F8F1DE" font-family="Times New Roman, serif" font-size="64" font-weight="700">BUILT FOR LEGACY.</text>
+  <text x="120" y="360" fill="#D6C39A" font-family="Arial, sans-serif" font-size="24">Premium streetwear storefront with collections, checkout and brand storytelling.</text>
+  <rect x="120" y="420" width="220" height="54" rx="2" fill="#C6A15B"/>
+  <text x="150" y="455" fill="#111111" font-family="Arial, sans-serif" font-size="18" font-weight="700">SHOP THE COLLECTION</text>
+</svg>

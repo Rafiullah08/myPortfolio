@@ -1,0 +1,11 @@
+{
+  "short_name": "Rafiullah",
+  "name": "Rafiullah | Founder of VornSoft",
+  "description": "Founder and Lead Architect of VornSoft. Full-stack developer building AI-powered SaaS and business software.",
+  "icons": [],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#1C1C27",
+  "background_color": "#1C1C27",
+  "lang": "en"
+}

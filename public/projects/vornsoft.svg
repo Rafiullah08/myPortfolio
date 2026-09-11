@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" fill="none">
+  <rect width="1200" height="720" fill="#0B1220"/>
+  <rect x="0" y="0" width="1200" height="720" fill="url(#bg)"/>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="720">
+      <stop stop-color="#101828"/>
+      <stop offset="1" stop-color="#1D4ED8"/>
+    </linearGradient>
+  </defs>
+  <rect x="70" y="80" width="1060" height="560" rx="28" fill="#F8FAFC"/>
+  <rect x="70" y="80" width="220" height="560" rx="28" fill="#0F172A"/>
+  <rect x="90" y="110" width="120" height="16" rx="8" fill="#60A5FA"/>
+  <rect x="90" y="180" width="160" height="12" rx="6" fill="#334155"/>
+  <rect x="90" y="210" width="140" height="12" rx="6" fill="#1E293B"/>
+  <rect x="90" y="240" width="150" height="12" rx="6" fill="#1E293B"/>
+  <rect x="90" y="270" width="120" height="12" rx="6" fill="#1E293B"/>
+  <rect x="330" y="120" width="280" height="90" rx="16" fill="#EFF6FF"/>
+  <rect x="630" y="120" width="220" height="90" rx="16" fill="#ECFDF5"/>
+  <rect x="870" y="120" width="220" height="90" rx="16" fill="#F5F3FF"/>
+  <rect x="330" y="240" width="760" height="340" rx="18" fill="#EEF2FF"/>
+  <text x="330" y="70" fill="#93C5FD" font-family="Arial, sans-serif" font-size="22" font-weight="700">VORNSOFT</text>
+  <text x="90" y="640" fill="#94A3B8" font-family="Arial, sans-serif" font-size="18">HR · CRM · ERP · Commerce</text>
+  <text x="330" y="175" fill="#0F172A" font-family="Arial, sans-serif" font-size="28" font-weight="700">AI Business OS</text>
+</svg>

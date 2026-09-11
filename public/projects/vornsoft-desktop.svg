@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" fill="none">
+  <rect width="1200" height="720" fill="#0B1020"/>
+  <rect x="90" y="70" width="1020" height="580" rx="24" fill="#111827"/>
+  <rect x="90" y="70" width="1020" height="48" rx="24" fill="#1F2937"/>
+  <circle cx="128" cy="94" r="8" fill="#F87171"/>
+  <circle cx="154" cy="94" r="8" fill="#FBBF24"/>
+  <circle cx="180" cy="94" r="8" fill="#34D399"/>
+  <rect x="120" y="150" width="240" height="460" rx="16" fill="#0F172A"/>
+  <rect x="390" y="150" width="680" height="210" rx="16" fill="#1E3A8A"/>
+  <rect x="390" y="380" width="330" height="230" rx="16" fill="#312E81"/>
+  <rect x="740" y="380" width="330" height="230" rx="16" fill="#0F766E"/>
+  <text x="410" y="230" fill="#DBEAFE" font-family="Arial, sans-serif" font-size="36" font-weight="700">VornSoft Desktop</text>
+  <text x="410" y="275" fill="#93C5FD" font-family="Arial, sans-serif" font-size="20">Native workspace for HR, CRM, projects and billing</text>
+</svg>
