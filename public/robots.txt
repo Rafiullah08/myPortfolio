@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://rafiullah08.github.io/sitemap.xml
+Sitemap: https://rafiullah.vornsoft.com/sitemap.xml

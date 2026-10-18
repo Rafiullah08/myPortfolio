@@ -1,8 +1,19 @@
 {
-  "short_name": "Rafiullah",
-  "name": "Rafiullah | Founder of VornSoft",
-  "description": "Founder and Lead Architect of VornSoft. Full-stack developer building AI-powered SaaS and business software.",
-  "icons": [],
+  "short_name": "Rafi Ullah",
+  "name": "Rafi Ullah | Full-Stack Developer",
+  "description": "Full-stack developer (React, Node.js, MongoDB) open to remote US/UK roles.",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#1C1C27",
