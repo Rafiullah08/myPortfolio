@@ -47,16 +47,17 @@ export const Desc = styled.div`
     @media (max-width: 768px) {
         margin-top: 12px;
         font-size: 16px;
+        padding: 0 20px;
     }
 `;
 
 export const ToggleButtonGroup = styled.div`
     display: flex;
     border: 1.5px solid ${({ theme }) => theme.primary};
-    color: ${({ theme }) => theme.primary};
+    color: ${({ theme }) => theme.primaryText};
     font-size: 16px;
     border-radius: 12px;
-    font-weight: 500;
+    font-weight: 600;
     margin: 22px 0px;
     @media (max-width: 768px) {
         font-size: 12px;
@@ -92,6 +93,9 @@ export const CardContainer = styled.div`
     align-items: center;
     gap: 28px;
     flex-wrap: wrap;
+    width: 100%;
+    padding: 0 16px;
+    box-sizing: border-box;
     // display: grid;
     // grid-template-columns: repeat(3, 1fr);
     // grid-gap: 32px;

@@ -97,7 +97,7 @@ const Tags = styled.div`
 const Tag = styled.div`
     font-size: 14px;
     font-weight: 400;
-    color: ${({ theme }) => theme.primary};
+    color: ${({ theme }) => theme.primaryText};
     margin: 4px;
     padding: 4px 8px;
     border-radius: 8px;
@@ -139,7 +139,7 @@ const MemberImage = styled.img`
 
 const MemberName = styled.div`
     font-size: 16px;
-    font-weight: 500;
+    font-weight: 600;
     width: 200px;
     color: ${({ theme }) => theme.text_primary};
     @media only screen and (max-width: 600px) {
@@ -153,6 +153,34 @@ const ButtonGroup = styled.div`
     justify-content: flex-end;
     margin: 12px 0px;
     gap: 12px;
+`;
+
+const CloseButton = styled.button`
+    position: absolute;
+    top: 10px;
+    right: 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: 8px;
+    background: transparent;
+    color: ${({ theme }) => theme.text_primary};
+    cursor: pointer;
+`;
+
+const Badge = styled.div`
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: ${({ theme }) => theme.primaryText};
+    background: ${({ theme }) => theme.primary}22;
+    border: 1px solid ${({ theme }) => theme.primary}55;
 `;
 
 const Button = styled.a`
@@ -185,22 +213,27 @@ const Button = styled.a`
 
 const index = ({ openModal, setOpenModal }) => {
     const project = openModal?.project;
+    const close = () => {
+        const returnFocus = openModal?.returnFocus;
+        setOpenModal({ state: false, project: null });
+        window.setTimeout(() => returnFocus?.focus?.(), 0);
+    };
     return (
-        <Modal open={true} onClose={() => setOpenModal({ state: false, project: null })}>
+        <Modal open={true} onClose={close} disableRestoreFocus>
             <Container>
-                <Wrapper>
-                    <CloseRounded
-                        aria-label="Close project details"
-                        style={{
-                            position: "absolute",
-                            top: "10px",
-                            right: "20px",
-                            cursor: "pointer",
-                        }}
-                        onClick={() => setOpenModal({ state: false, project: null })}
+                <Wrapper role="dialog" aria-modal="true" aria-labelledby="project-dialog-title">
+                    <CloseButton type="button" aria-label="Close project details" onClick={close}>
+                        <CloseRounded />
+                    </CloseButton>
+                    <Image
+                        src={project?.image}
+                        srcSet={project?.srcSet}
+                        sizes={project?.sizes}
+                        alt={`${project?.title || "Project"} preview`}
+                        width="1200"
+                        height="720"
                     />
-                    <Image src={project?.image} alt={`${project?.title || "Project"} preview`} />
-                    <Title as="h2">{project?.title}</Title>
+                    <Title as="h2" id="project-dialog-title">{project?.title}</Title>
                     {project?.date && <Date>{project.date}</Date>}
                     <Tags>
                         {project?.tags?.map((tag) => (
@@ -208,13 +241,13 @@ const index = ({ openModal, setOpenModal }) => {
                         ))}
                     </Tags>
                     <Desc>{project?.description}</Desc>
-                    {project.member && (
+                    {project?.member && (
                         <>
                             <Label>Members</Label>
                             <Members>
-                                {project?.member.map((member) => (
+                                {project.member.map((member) => (
                                     <Member key={member.name}>
-                                        <MemberImage src={member.img} />
+                                        <MemberImage src={member.img} alt="" width="50" height="50" />
                                         <MemberName>{member.name}</MemberName>
                                         <a href={member.github} target="_blank" rel="noopener noreferrer" style={{textDecoration: 'none', color: 'inherit'}}>
                                             <GitHub />
@@ -228,9 +261,7 @@ const index = ({ openModal, setOpenModal }) => {
                         </>
                     )}
                     <ButtonGroup>
-                        {project?.github && (
-                          <Button dull href={project.github} target="_blank" rel="noopener noreferrer">View Code</Button>
-                        )}
+                        {project?.badge && <Badge>{project.badge}</Badge>}
                         {project?.webapp && (
                           <Button href={project.webapp} target="_blank" rel="noopener noreferrer">Visit Live</Button>
                         )}

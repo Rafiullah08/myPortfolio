@@ -7,7 +7,7 @@ import TimelineSeparator from '@mui/lab/TimelineSeparator';
 import TimelineConnector from '@mui/lab/TimelineConnector';
 import TimelineContent from '@mui/lab/TimelineContent';
 import TimelineDot from '@mui/lab/TimelineDot';
-import { education } from '../../data/constants';
+import { certifications, education } from '../../data/constants';
 import EducationCard from '../Cards/EducationCard';
 
 const Container = styled.div`
@@ -59,7 +59,16 @@ const Desc = styled.div`
     @media (max-width: 768px) {
         margin-top: 12px;
         font-size: 16px;
+        padding: 0 20px;
     }
+`;
+
+const CertBlock = styled.div`
+    width: 100%;
+    max-width: 650px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
 `;
 
 const TimelineSection = styled.div`
@@ -68,11 +77,31 @@ const TimelineSection = styled.div`
     margin-top: 10px;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: stretch;
     justify-content: center;
     gap: 12px;
-    @media (max-width: 660px) {
-        align-items: end;
+    padding: 0 16px;
+    box-sizing: border-box;
+
+    .MuiTimeline-root {
+        padding: 0 !important;
+        margin: 0 !important;
+        width: 100%;
+    }
+
+    .MuiTimelineItem-root {
+        min-width: 0;
+        width: 100%;
+    }
+
+    .MuiTimelineItem-root:before {
+        flex: 0 !important;
+        padding: 0 !important;
+        content: none;
+    }
+
+    .MuiTimelineContent-root {
+        min-width: 0;
     }
 `;
 
@@ -84,13 +113,13 @@ const index = () => {
             <Wrapper>
                 <Title as="h2" id="education-title">Education</Title>
                 <Desc>
-                    Formal education that sits behind the products I build today.
+                    Education and certifications.
                 </Desc>
                 <TimelineSection>
                     <Timeline>
                         {education.map((educationItem, index) => (
                             <TimelineItem key={educationItem.id}>
-                                <TimelineContent sx={{ py: '12px', px: 2 }}>
+                                <TimelineContent sx={{ py: '12px', px: { xs: 1, sm: 2 } }}>
                                     <EducationCard education={educationItem}/>
                                 </TimelineContent>
                                 <TimelineSeparator>
@@ -100,6 +129,12 @@ const index = () => {
                             </TimelineItem>
                         ))}
                     </Timeline>
+                    <CertBlock>
+                        <Title as="h3" style={{ fontSize: "28px", marginTop: "28px" }}>Certifications</Title>
+                        {certifications.map((item) => (
+                            <EducationCard key={item.id} education={item} />
+                        ))}
+                    </CertBlock>
 
                 </TimelineSection>
             </Wrapper>

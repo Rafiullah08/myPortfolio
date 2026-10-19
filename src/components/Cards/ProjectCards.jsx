@@ -17,6 +17,7 @@ const Button = styled.button`
 `
 const Card = styled.div`
     width: 330px;
+    max-width: 100%;
     height: 490px;
     background-color: ${({ theme }) => theme.card};
     cursor: pointer;
@@ -64,7 +65,7 @@ const Tags = styled.div`
 const Tag = styled.span`
     font-size: 12px;
     font-weight: 400;
-    color: ${({ theme }) => theme.primary};
+    color: ${({ theme }) => theme.primaryText};
     background-color: ${({ theme }) => theme.primary + 15};
     padding: 2px 8px;
     border-radius: 10px;
@@ -95,16 +96,16 @@ const Date = styled.div`
     font-size: 12px;
     margin-left: 2px;
     font-weight: 400;
-    color: ${({ theme }) => theme.text_secondary + 80};
+    color: #9a9ba3;
     @media only screen and (max-width: 768px){
-        font-size: 10px;
+        font-size: 12px;
     }
 `
 
 
 const Description = styled.div`
     font-weight: 400;
-    color: ${({ theme }) => theme.text_secondary + 99};
+    color: #a1a1aa;
     overflow: hidden;
     margin-top: 8px;
     display: -webkit-box;
@@ -133,18 +134,27 @@ const ProjectCards = ({project,setOpenModal}) => {
     return (
         <Card
             as="article"
-            onClick={() => setOpenModal({state: true, project: project})}
+            onClick={(event) => setOpenModal({state: true, project: project, returnFocus: event.currentTarget})}
             onKeyDown={(event) => {
                 if (event.key === "Enter" || event.key === " ") {
                     event.preventDefault();
-                    setOpenModal({state: true, project: project});
+                    setOpenModal({state: true, project: project, returnFocus: event.currentTarget});
                 }
             }}
             role="button"
             tabIndex={0}
-            aria-label={`${project.title} project details`}
+            aria-label={`View details: ${project.title}`}
         >
-            <Image src={project.image} alt={`${project.title} preview`} loading="lazy" decoding="async" />
+            <Image
+                src={project.image}
+                srcSet={project.srcSet}
+                sizes={project.sizes}
+                alt={`${project.title} preview`}
+                width="600"
+                height="180"
+                loading="lazy"
+                decoding="async"
+            />
             <Tags>
                 {project.tags?.map((tag) => (
                 <Tag key={tag}>{tag}</Tag>

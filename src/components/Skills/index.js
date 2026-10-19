@@ -21,6 +21,8 @@ flex-direction: column;
 width: 100%;
 max-width: 1100px;
 gap: 12px;
+padding: 0 16px;
+box-sizing: border-box;
 @media (max-width: 960px) {
     flex-direction: column;
 }
@@ -46,6 +48,7 @@ export const Desc = styled.div`
     color: ${({ theme }) => theme.text_secondary};
     @media (max-width: 768px) {
         font-size: 16px;
+        padding: 0 20px;
     }
 `;
 
@@ -76,8 +79,8 @@ const Skill = styled.div`
     padding: 10px 36px;
   }
   @media (max-width: 500px) {
-    max-width: 330px;
-    padding: 10px 36px;
+    max-width: 100%;
+    padding: 10px 16px;
   }
 
 
@@ -123,6 +126,7 @@ const SkillItem = styled.div`
 const SkillImage = styled.img`
   width: 24px;
   height: 24px;
+  ${({ $invert }) => $invert && "filter: invert(1);"}
 `
 
 const Skills = () => {
@@ -131,7 +135,7 @@ const Skills = () => {
       <Wrapper>
         <Reveal>
           <Title as="h2" id="skills-title">Skills</Title>
-          <Desc>The stack I use to design, build, and ship SaaS products, native apps, and AI-powered business software.</Desc>
+          <Desc>The stack I use to build and ship full-stack web, mobile and desktop applications.</Desc>
         </Reveal>
         <SkillsContainer>
           {skills.map((skill, index) => (
@@ -141,7 +145,9 @@ const Skills = () => {
                 <SkillList>
                   {skill.skills.map((item) => (
                     <SkillItem key={item.name}>
-                      <SkillImage src={item.image} alt={item.name} loading="lazy" decoding="async" width="24" height="24"/>
+                      {item.image && (
+                        <SkillImage src={item.image} alt="" $invert={item.invert} loading="lazy" decoding="async" width="24" height="24"/>
+                      )}
                       {item.name}
                     </SkillItem>
                   ))}

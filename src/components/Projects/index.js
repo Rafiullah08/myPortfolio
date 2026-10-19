@@ -7,9 +7,9 @@ import Reveal from '../Reveal'
 
 const categories = [
   { key: 'all', label: 'All' },
-  { key: 'web app', label: 'Web' },
+  { key: 'web', label: 'Web' },
   { key: 'desktop', label: 'Desktop' },
-  { key: 'native app', label: 'Native Apps' },
+  { key: 'mobile', label: 'Mobile' },
 ];
 
 const Projects = ({openModal,setOpenModal}) => {
@@ -24,7 +24,7 @@ const Projects = ({openModal,setOpenModal}) => {
         <Reveal>
           <Title as="h2" id="projects-title">Projects</Title>
           <Desc>
-            Live products I have founded and built — from an AI business OS to commerce and native field apps.
+            Products I've built, from my own SaaS platform to client e-commerce, booking and mobile apps.
           </Desc>
         </Reveal>
         <ToggleButtonGroup role="tablist" aria-label="Project categories">

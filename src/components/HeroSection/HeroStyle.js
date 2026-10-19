@@ -9,7 +9,7 @@ export const HeroContainer = styled.div`
   @media (max-width: 960px) {
     padding: 66px 16px;
   }
-  @media (max-width: 640) {
+  @media (max-width: 640px) {
     padding: 32px 16px;
   }
   z-index: 1;
@@ -56,7 +56,6 @@ export const HeroInnerContainer = styled.div`
 export const HeroLeftContainer = styled.div`
   width: 100%;
   order: 1;
-  animation: fadeInUp 0.9s ease both;
   @media (max-width: 960px) {
     order: 2;
     margin-bottom: 30px;
@@ -65,8 +64,12 @@ export const HeroLeftContainer = styled.div`
     align-items: center;
   }
 
+  @media (max-width: 768px) {
+    order: 1;
+  }
+
   @media (max-width: 640px) {
-    order: 2;
+    order: 1;
     margin-bottom: 30px;
     display: flex;
     flex-direction: column;
@@ -87,8 +90,14 @@ export const HeroRightContainer = styled.div`
     margin-bottom: 80px;
   }
 
+  @media (max-width: 768px) {
+    order: 2;
+    margin-bottom: 24px;
+  }
+
   @media (max-width: 640px) {
-    margin-bottom: 30px;
+    order: 2;
+    margin-bottom: 16px;
   }
 `;
 
@@ -100,7 +109,7 @@ export const Img = styled.img`
   max-height: 400px;
   border-radius: 50%;
   object-fit: cover;
-  object-position: 50% 34%;
+  object-position: center;
   border: 2px solid ${({ theme }) => theme.primary};
   box-shadow: 0 0 0 8px ${({ theme }) => theme.primary}22;
   animation: floatY 5.5s ease-in-out infinite, fadeInUp 0.9s ease both;
@@ -111,13 +120,13 @@ export const Img = styled.img`
   }
 
   @media (max-width: 768px) {
-    max-width: 400px;
-    max-height: 400px;
+    max-width: 160px;
+    max-height: 160px;
   }
 
   @media (max-width: 640px) {
-    max-width: 280px;
-    max-height: 280px;
+    max-width: 160px;
+    max-height: 160px;
   }
 `;
 
@@ -142,22 +151,32 @@ export const TextLoop = styled.div`
   font-weight: 600;
   font-size: 32px;
   display: flex;
+  flex-wrap: wrap;
   gap: 12px;
+  max-width: 100%;
   color: ${({ theme }) => theme.text_primary};
   line-height: 68px;
   @media (max-width: 960px) {
     text-align: center;
+    justify-content: center;
   }
   @media (max-width: 640px) {
     font-size: 22px;
     line-height: 48px;
     margin-bottom: 16px;
   }
+  @media (max-width: 400px) {
+    font-size: 18px;
+    line-height: 32px;
+    gap: 8px;
+  }
 `;
 
 export const Span = styled.span`
-  color: ${({ theme }) => theme.primary};
+  color: ${({ theme }) => theme.primaryText};
   cursor: pointer;
+  max-width: 100%;
+  min-width: 0;
 `;
 
 export const SubTitle = styled.div`

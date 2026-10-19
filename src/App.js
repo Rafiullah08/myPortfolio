@@ -1,5 +1,5 @@
 import { ThemeProvider } from "styled-components";
-import { useState } from "react";
+import { lazy, Suspense, useState } from "react";
 import { darkTheme, lightTheme } from './utils/Themes.js'
 import Navbar from "./components/Navbar";
 import './App.css';
@@ -8,17 +8,20 @@ import HeroSection from "./components/HeroSection";
 import About from "./components/About";
 import Skills from "./components/Skills";
 import Projects from "./components/Projects";
-import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import Experience from "./components/Experience";
 import Education from "./components/Education";
-import ProjectDetails from "./components/ProjectDetails";
+import NotFound from "./components/NotFound";
 import styled from "styled-components";
+
+const Contact = lazy(() => import("./components/Contact"));
+const ProjectDetails = lazy(() => import("./components/ProjectDetails"));
 
 const SkipLink = styled.a`
   position: absolute;
   left: 12px;
-  top: -40px;
+  top: 0;
+  transform: translateY(-120%);
   z-index: 100;
   background: ${({ theme }) => theme.primary};
   color: ${({ theme }) => theme.white};
@@ -28,6 +31,7 @@ const SkipLink = styled.a`
   font-weight: 600;
   &:focus {
     top: 12px;
+    transform: none;
   }
 `
 
@@ -45,28 +49,40 @@ const Wrapper = styled.div`
 function App() {
   const [darkMode] = useState(true);
   const [openModal, setOpenModal] = useState({ state: false, project: null });
+  const path = window.location.pathname;
+  const isHome = path === "/" || path === "/index.html";
   return (
     <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
       <Router >
-        <SkipLink href="#about">Skip to content</SkipLink>
-        <Navbar />
-        <Body>
-          <HeroSection />
-          <About />
-          <Wrapper>
-            <Skills />
-            <Experience />
-          </Wrapper>
-          <Projects openModal={openModal} setOpenModal={setOpenModal} />
-          <Wrapper>
-            <Education />
-            <Contact />
-          </Wrapper>
-          {openModal.state &&
-            <ProjectDetails openModal={openModal} setOpenModal={setOpenModal} />
-          }
-        </Body>
-        <Footer />
+        {isHome ? (
+          <>
+            <SkipLink href="#main">Skip to content</SkipLink>
+            <Navbar />
+            <Body id="main">
+              <HeroSection />
+              <About />
+              <Wrapper>
+                <Skills />
+                <Experience />
+              </Wrapper>
+              <Projects openModal={openModal} setOpenModal={setOpenModal} />
+              <Wrapper>
+                <Education />
+                <Suspense fallback={null}>
+                  <Contact />
+                </Suspense>
+              </Wrapper>
+              {openModal.state &&
+                <Suspense fallback={null}>
+                  <ProjectDetails openModal={openModal} setOpenModal={setOpenModal} />
+                </Suspense>
+              }
+            </Body>
+            <Footer />
+          </>
+        ) : (
+          <NotFound />
+        )}
       </Router>
     </ThemeProvider>
   );

@@ -59,6 +59,7 @@ const Desc = styled.div`
     @media (max-width: 768px) {
         margin-top: 12px;
         font-size: 16px;
+        padding: 0 20px;
     }
 `;
 
@@ -68,9 +69,32 @@ const TimelineSection = styled.div`
     margin-top: 10px;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: stretch;
     justify-content: center;
     gap: 12px;
+    padding: 0 16px;
+    box-sizing: border-box;
+
+    .MuiTimeline-root {
+        padding: 0 !important;
+        margin: 0 !important;
+        width: 100%;
+    }
+
+    .MuiTimelineItem-root {
+        min-width: 0;
+        width: 100%;
+    }
+
+    .MuiTimelineItem-root:before {
+        flex: 0 !important;
+        padding: 0 !important;
+        content: none;
+    }
+
+    .MuiTimelineContent-root {
+        min-width: 0;
+    }
 `;
 
 
@@ -81,7 +105,7 @@ const index = () => {
             <Wrapper>
                 <Title as="h2" id="experience-title">Experience</Title>
                 <Desc>
-                    Founder-led product work plus full-stack roles across Tekbis, Horizon, and Encryptix.
+                    My own SaaS startup plus full-stack roles at Tekbis, Horizon Agency and Hostachem.
                 </Desc>
                 <TimelineSection>
                     <Timeline>
@@ -91,7 +115,7 @@ const index = () => {
                                     <TimelineDot variant="outlined" color="secondary" />
                                     {index !== experiences.length - 1 && <TimelineConnector style={{ background: '#854CE6' }} />}
                                 </TimelineSeparator>
-                                <TimelineContent sx={{ py: '12px', px: 2 }}>
+                                <TimelineContent sx={{ py: '12px', px: { xs: 1, sm: 2 } }}>
                                     <ExperienceCard experience={experience}/>
                                 </TimelineContent>
                             </TimelineItem>

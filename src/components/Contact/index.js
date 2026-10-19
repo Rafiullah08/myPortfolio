@@ -55,6 +55,14 @@ const Desc = styled.div`
   }
 `;
 
+const LinkRow = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 8px;
+`;
+
 const EmailChip = styled.a`
   display: inline-flex;
   align-items: center;
@@ -66,7 +74,7 @@ const EmailChip = styled.a`
   color: ${({ theme }) => theme.text_primary};
   border: 1px solid ${({ theme }) => theme.primary}55;
   background: ${({ theme }) => theme.primary}14;
-  font-weight: 500;
+  font-weight: 600;
   transition: transform 0.25s ease, border-color 0.25s ease;
   &:hover {
     transform: translateY(-2px);
@@ -263,12 +271,26 @@ const Contact = () => {
         <Reveal>
           <Title as="h2" id="contact-title">Let’s work together</Title>
           <Desc>
-            Send a message or book a call. Both go directly to {Bio.email}.
+            Hiring for a remote full-stack role? Email me, message me on WhatsApp, or send a message below.
           </Desc>
-          <EmailChip href={`mailto:${Bio.email}`}>
-            <EmailOutlinedIcon fontSize="small" />
-            {Bio.email}
-          </EmailChip>
+          <LinkRow>
+            <EmailChip href={`mailto:${Bio.email}`}>
+              <EmailOutlinedIcon fontSize="small" />
+              {Bio.email}
+            </EmailChip>
+            <EmailChip href={Bio.whatsapp} target="_blank" rel="noopener noreferrer">
+              {Bio.whatsappLabel}
+            </EmailChip>
+            <EmailChip href={Bio.linkedin} target="_blank" rel="noopener noreferrer">
+              linkedin.com/in/rafiullah08
+            </EmailChip>
+            <EmailChip href={Bio.github} target="_blank" rel="noopener noreferrer">
+              github.com/Rafiullah08
+            </EmailChip>
+            <EmailChip href={Bio.resume} download>
+              Download CV
+            </EmailChip>
+          </LinkRow>
         </Reveal>
         <Grid>
           <Reveal>

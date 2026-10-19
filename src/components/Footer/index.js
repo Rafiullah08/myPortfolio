@@ -1,7 +1,5 @@
 import styled from 'styled-components';
-import FacebookIcon from '@mui/icons-material/Facebook';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import InstagramIcon from '@mui/icons-material/Instagram';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 import { Bio } from '../../data/constants';
@@ -29,7 +27,7 @@ const FooterWrapper = styled.footer`
 const Logo = styled.p`
   font-weight: 600;
   font-size: 20px;
-  color: ${({ theme }) => theme.primary};
+  color: ${({ theme }) => theme.primaryText};
   margin: 0;
 `;
 
@@ -104,7 +102,7 @@ function Footer() {
   return (
     <FooterContainer>
       <FooterWrapper>
-        <Logo>Rafiullah</Logo>
+        <Logo>Rafi Ullah</Logo>
         <EmailLink href={`mailto:${Bio.email}`} aria-label={`Email ${Bio.email}`}>
           <EmailOutlinedIcon fontSize="small" />
           {Bio.email}
@@ -120,11 +118,9 @@ function Footer() {
         <SocialMediaIcons>
           {Bio.github && <SocialMediaIcon href={Bio.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub"><GitHubIcon /></SocialMediaIcon>}
           {Bio.linkedin && <SocialMediaIcon href={Bio.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><LinkedInIcon /></SocialMediaIcon>}
-          {Bio.facebook && <SocialMediaIcon href={Bio.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook"><FacebookIcon /></SocialMediaIcon>}
-          {Bio.insta && <SocialMediaIcon href={Bio.insta} target="_blank" rel="noopener noreferrer" aria-label="Instagram"><InstagramIcon /></SocialMediaIcon>}
         </SocialMediaIcons>
         <Copyright>
-          &copy; 2026 Rafiullah. All rights reserved.
+          &copy; 2026 Rafi Ullah. All rights reserved.
         </Copyright>
 
       </FooterWrapper>

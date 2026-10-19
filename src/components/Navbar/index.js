@@ -1,5 +1,6 @@
 import React from 'react'
 import { Nav, NavLink, NavbarContainer, Span, NavLogo, NavItems, GitHubButton, ButtonContainer, MobileIcon, MobileMenu, MobileLink } from './NavbarStyledComponent'
+import { Bio } from '../../data/constants';
 import { DiCssdeck } from 'react-icons/di';
 import { FaBars } from 'react-icons/fa';
 import { useTheme } from 'styled-components';
@@ -10,8 +11,8 @@ const Navbar = () => {
   return (
     <Nav as="header">
       <NavbarContainer as="nav" aria-label="Primary">
-        <NavLogo href="#about" aria-label="Rafiullah home">
-          <DiCssdeck size="3rem" /> <Span>Rafiullah</Span>
+        <NavLogo href="#about" aria-label="Rafi Ullah home">
+          <DiCssdeck size="3rem" /> <Span>Rafi Ullah</Span>
         </NavLogo>
         <MobileIcon
           as="button"
@@ -23,15 +24,15 @@ const Navbar = () => {
           <FaBars aria-hidden="true" />
         </MobileIcon>
         <NavItems>
-          <NavLink href="#about">About</NavLink>
-          <NavLink href='#skills'>Skills</NavLink>
-          <NavLink href='#experience'>Experience</NavLink>
-          <NavLink href='#projects'>Projects</NavLink>
-          <NavLink href='#education'>Education</NavLink>
-          <NavLink href='#contact'>Contact</NavLink>
+          <li><NavLink href="#about">About</NavLink></li>
+          <li><NavLink href='#skills'>Skills</NavLink></li>
+          <li><NavLink href='#experience'>Experience</NavLink></li>
+          <li><NavLink href='#projects'>Projects</NavLink></li>
+          <li><NavLink href='#education'>Education</NavLink></li>
+          <li><NavLink href='#contact'>Contact</NavLink></li>
         </NavItems>
         <ButtonContainer>
-          <GitHubButton href="#book-call">Book a Call</GitHubButton>
+          <GitHubButton href={Bio.resume} download>Download CV</GitHubButton>
         </ButtonContainer>
         {
           isOpen &&
@@ -42,7 +43,7 @@ const Navbar = () => {
             <MobileLink href='#projects' onClick={() => setIsOpen(false)}>Projects</MobileLink>
             <MobileLink href='#education' onClick={() => setIsOpen(false)}>Education</MobileLink>
             <MobileLink href='#contact' onClick={() => setIsOpen(false)}>Contact</MobileLink>
-            <GitHubButton style={{padding: '10px 16px',background: `${theme.primary}`, color: 'white',width: 'max-content'}} href="#book-call" onClick={() => setIsOpen(false)}>Book a Call</GitHubButton>
+            <GitHubButton style={{padding: '10px 16px',background: `${theme.primary}`, color: 'white',width: 'max-content'}} href={Bio.resume} download onClick={() => setIsOpen(false)}>Download CV</GitHubButton>
           </MobileMenu>
         }
       </NavbarContainer>

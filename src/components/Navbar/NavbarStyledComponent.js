@@ -12,7 +12,7 @@ export const Nav = styled.div`
     top: 0;
     z-index: 10;
     @media (max-width: 960px) {
-        trastion: 0.8s all ease;
+        transition: 0.8s all ease;
     }
 `;
 export const NavbarContainer = styled.div`
@@ -27,7 +27,8 @@ export const NavbarContainer = styled.div`
 `;
 
 export const NavLogo = styled.a`
-    width: 80%;    
+    width: auto;
+    flex-shrink: 0;
     padding: 0 6px;
     display: flex;
     justify-content: start;
@@ -44,22 +45,33 @@ export const Span = styled.div`
     font-size: 18px;
 `;
 export const NavItems = styled.ul`
-    width: 100%;
+    width: auto;
+    flex: 1;
+    min-width: 0;
     display: flex;
     align-items: center;
     justify-content:center;
     gap: 32px;
     padding: 0 6px;
     list-style: none;
+    margin: 0;
 
-    @media screen and (max-width: 768px) {
+    li {
+      display: flex;
+    }
+
+    @media screen and (max-width: 1100px) {
+      gap: 16px;
+    }
+
+    @media screen and (max-width: 960px) {
       display: none;
     }
 `;
 
 export const NavLink = styled.a`
     color: ${({ theme }) => theme.text_primary};
-    font-weight: 500;
+    font-weight: 600;
     cursor: pointer;
     transition: all 0.2s ease-in-out;
     text-decoration: none;
@@ -80,30 +92,32 @@ export const GitHubButton = styled.a`
   align-items: center;
   height: 70%;
   border-radius: 20px;
-  color: ${({ theme }) => theme.primary};
+  color: ${({ theme }) => theme.primaryText};
   cursor: pointer;
   padding: 0 20px;
-  font-weight: 500;
+  font-weight: 600;
   text-decoration: none;
   font-size: 16px;
+  white-space: nowrap;
   transition: all 0.6s ease-in-out;
     :hover {
       background: ${({ theme }) => theme.primary};
       color: ${({ theme }) => theme.white};     
     }
-    @media screen and (max-width: 768px) { 
+    @media screen and (max-width: 960px) { 
     font-size: 14px;
     }
 `;
 
 export const ButtonContainer = styled.div`
-  width: 80%;  
+  width: auto;
+  flex-shrink: 0;
   height: 100%;
   display: flex;
   justify-content: end;
   align-items: center;
   padding: 0 6px;
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 960px) {
     display: none;
   }
 `;
@@ -111,7 +125,7 @@ export const ButtonContainer = styled.div`
 
 export const MobileIcon = styled.div`
   display: none;
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 960px) {
     display: block;
     position: absolute;
     top: 0;
@@ -159,7 +173,7 @@ export const MobileMenuItems = styled.ul`
 
 export const MobileMenuLink = styled(LinkR)`
   color: ${({ theme }) => theme.text_primary};
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
   text-decoration: none;
@@ -182,7 +196,7 @@ export const MobileMenuButton = styled.a`
   color: ${({ theme }) => theme.primary};
   cursor: pointer;
   padding: 0 20px;
-  font-weight: 500;
+  font-weight: 600;
   text-decoration: none;
   font-size: 16px;
   transition: all 0.6s ease-in-out;
@@ -195,7 +209,7 @@ export const MobileMenuButton = styled.a`
 
 export  const MobileLink = styled.a`
   color: ${({ theme }) => theme.text_primary};
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
   text-decoration: none;

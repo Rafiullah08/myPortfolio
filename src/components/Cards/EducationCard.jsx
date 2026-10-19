@@ -25,16 +25,12 @@ const Description = styled.div`
 `
 
 const Span = styled.span`
-overflow: hidden;
-display: -webkit-box;
-max-width: 100%;
--webkit-line-clamp: 4;
--webkit-box-orient: vertical;
-text-overflow: ellipsis;
+    display: block;
 `
 
 const Card = styled.div`
-    width: 650px;
+    width: 100%;
+    max-width: 650px;
     border-radius: 10px;
     box-shadow: rgba(23, 92, 230, 0.15) 0px 4px 24px;
     padding: 12px 16px;
@@ -52,18 +48,12 @@ const Card = styled.div`
     @media only screen and (max-width: 768px){
         padding: 10px;
         gap: 8px;
-        width: 300px;
     }
 
     &:hover ${Document}{
         display: flex;
     }
 
-    &:hover ${Span}{
-        overflow: visible;
-        -webkit-line-clamp: unset;
-
-    }
     border: 0.1px solid #854CE6;
 `
 
@@ -75,11 +65,14 @@ const Top = styled.div`
 
 const Image = styled.img`
     height: 50px;
+    width: 50px;
+    object-fit: contain;
     background-color: #000;
     border-radius: 10px;
     margin-top: 4px;
     @media only screen and (max-width: 768px){
         height: 40px;
+        width: 40px;
     }
 `
 
@@ -102,7 +95,7 @@ const Name = styled.div`
 
 const Degree = styled.div`
     font-size: 14px;
-    font-weight: 500;
+    font-weight: 600;
     color: ${({ theme }) => theme.text_secondary + 99};
     @media only screen and (max-width: 768px){
         font-size: 12px;
@@ -112,15 +105,15 @@ const Degree = styled.div`
 const Date = styled.div`
     font-size: 12px;
     font-weight: 400;
-    color: ${({ theme }) => theme.text_secondary + 80};
+    color: #9a9ba3;
     @media only screen and (max-width: 768px){
-        font-size: 10px;
+        font-size: 12px;
     }
 `
 
 const Grade = styled.div`
     font-size: 14px;
-    font-weight: 500;
+    font-weight: 600;
     color: ${({ theme }) => theme.text_secondary + 99};
     @media only screen and (max-width: 768px){
         font-size: 12px;
@@ -133,17 +126,21 @@ const EducationCard = ({ education }) => {
     return (
         <Card>
             <Top>
-                <Image src={education.img} alt={`${education.school} logo`} loading="lazy" decoding="async" />
+                {education.img && (
+                    <Image src={education.img} alt={`${education.school} logo`} width="50" height="50" loading="lazy" decoding="async" />
+                )}
                 <Body>
                     <Name as="h3">{education.school}</Name>
                     <Degree>{education.degree}</Degree>
-                    <Date>{education.date}</Date>
+                    {education.date && <Date>{education.date}</Date>}
                 </Body>
             </Top>
-            <Grade><b>Grade: </b>{education.grade}</Grade>
-            <Description>
-                <Span>{education.desc}</Span>
-            </Description>
+            {education.grade && <Grade><b>Grade: </b>{education.grade}</Grade>}
+            {education.desc && (
+                <Description>
+                    <Span>{education.desc}</Span>
+                </Description>
+            )}
         </Card>
     )
 }
