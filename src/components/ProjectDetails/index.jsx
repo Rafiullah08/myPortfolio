@@ -18,7 +18,7 @@ transition: all 0.5s ease;
 `;
 
 const Wrapper = styled.div`
-max-width: 800px;
+max-width: ${({ $wide }) => ($wide ? "1100px" : "800px")};
 width: 100%;
 border-radius: 16px;
 margin: 50px 12px;
@@ -65,12 +65,29 @@ const Desc = styled.div`
     }
 `;
 
-const Image = styled.img`
+const LiveScroll = styled.div`
     width: 100%;
-    object-fit: cover;
-    object-position: top center;
-    border-radius: 12px;
+    height: min(72vh, 720px);
     margin-top: 30px;
+    overflow: auto;
+    border-radius: 12px;
+    background: #ffffff;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.3);
+`;
+
+const LiveImage = styled.img`
+    width: 100%;
+    height: auto;
+    display: block;
+`;
+
+const LiveFrame = styled.iframe`
+    width: 100%;
+    height: min(72vh, 720px);
+    margin-top: 30px;
+    border: 0;
+    border-radius: 12px;
+    background: #ffffff;
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.3);
 `;
 
@@ -213,6 +230,7 @@ const Button = styled.a`
 
 const index = ({ openModal, setOpenModal }) => {
     const project = openModal?.project;
+    const showLiveSite = Boolean(project?.webapp && project?.embed);
     const close = () => {
         const returnFocus = openModal?.returnFocus;
         setOpenModal({ state: false, project: null });
@@ -221,18 +239,24 @@ const index = ({ openModal, setOpenModal }) => {
     return (
         <Modal open={true} onClose={close} disableRestoreFocus>
             <Container>
-                <Wrapper role="dialog" aria-modal="true" aria-labelledby="project-dialog-title">
+                <Wrapper $wide={showLiveSite || Boolean(project?.image)} role="dialog" aria-modal="true" aria-labelledby="project-dialog-title">
                     <CloseButton type="button" aria-label="Close project details" onClick={close}>
                         <CloseRounded />
                     </CloseButton>
-                    <Image
-                        src={project?.image}
-                        srcSet={project?.srcSet}
-                        sizes={project?.sizes}
-                        alt={`${project?.title || "Project"} preview`}
-                        width="1200"
-                        height="720"
-                    />
+                    {showLiveSite ? (
+                        <LiveFrame
+                            src={project.webapp}
+                            title={`${project.title} live site`}
+                            loading="lazy"
+                        />
+                    ) : (
+                        <LiveScroll>
+                            <LiveImage
+                                src={project?.image}
+                                alt={`${project?.title || "Project"} preview`}
+                            />
+                        </LiveScroll>
+                    )}
                     <Title as="h2" id="project-dialog-title">{project?.title}</Title>
                     {project?.date && <Date>{project.date}</Date>}
                     <Tags>

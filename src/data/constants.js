@@ -186,9 +186,7 @@ export const projects = [
     date: "Own startup · Sep 2025 – Present",
     description:
       "Multi-tenant SaaS business platform I built solo, with five suites: HR (attendance, leave, payroll, recruitment), CRM (leads, deals, proposals, multi-channel inbox), Projects (boards, timesheets), ERP (ledger, AP/AR, procurement, inventory) and Retail POS. AI features using DeepSeek (HR assistant, CV scoring, CRM deal-win prediction, report generator), plus Stripe webhooks, Twilio/Meta WhatsApp and SMS, Zoom, Google Calendar and Outlook integrations.",
-    image: "/projects/vornsoft.png",
-    srcSet: "/projects/vornsoft-600.webp 600w, /projects/vornsoft-1200.webp 1200w",
-    sizes: "(max-width: 640px) 100vw, 290px",
+    image: "/projects/vornsoft-live.webp",
     tags: [
       "React",
       "Redux Toolkit",
@@ -220,8 +218,6 @@ export const projects = [
     description:
       "A complete point-of-sale (POS) desktop application built with Electron.js and React for a client, as the full-stack developer.",
     image: "/projects/vornsoft-desktop.png",
-    srcSet: "/projects/vornsoft-desktop-600.webp 600w, /projects/vornsoft-desktop-1200.webp 1200w",
-    sizes: "(max-width: 640px) 100vw, 290px",
     tags: ["Electron.js", "React", "POS"],
     category: "desktop",
   },
@@ -231,10 +227,11 @@ export const projects = [
     date: "Tekbis client project",
     description:
       "Streetwear e-commerce storefront with category browsing, size/color variants, search, wishlist and a persistent cart, plus a Stripe Checkout integration via a server-side checkout-session API and a newsletter sign-up endpoint.",
-    image: "/projects/dapor.svg",
+    image: "/projects/dapor-live.webp",
     tags: ["JavaScript", "Node.js", "Stripe", "Vercel"],
     category: "web",
     webapp: "https://www.dapormillionaires.com/",
+    embed: true,
   },
   {
     id: 4,
@@ -242,9 +239,10 @@ export const projects = [
     date: "Tekbis client project",
     description:
       "Home-inspection company website with a services catalog and an online booking scheduler backed by Supabase, plus an admin CMS for live-preview content editing, image uploads and booking management with CSV export.",
-    image: "/projects/chi.svg",
+    image: "/projects/chi-live.webp",
     tags: ["JavaScript", "Supabase", "Vercel"],
     category: "web",
     webapp: "https://www.chinspects.com/",
+    embed: true,
   },
 ];

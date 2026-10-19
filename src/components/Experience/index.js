@@ -77,13 +77,14 @@ const TimelineSection = styled.div`
 
     .MuiTimeline-root {
         padding: 0 !important;
-        margin: 0 !important;
+        margin: 0 auto !important;
         width: 100%;
+        align-items: center !important;
     }
 
     .MuiTimelineItem-root {
         min-width: 0;
-        width: 100%;
+        width: min(100%, 760px) !important;
     }
 
     .MuiTimelineItem-root:before {

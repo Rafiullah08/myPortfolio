@@ -42,6 +42,7 @@ const Note = styled.p`
 const Card = styled.div`
     width: 100%;
     max-width: 650px;
+    margin: 0 auto;
     border-radius: 10px;
     box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
     padding: 12px 16px;

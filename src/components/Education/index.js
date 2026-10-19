@@ -64,10 +64,11 @@ const Desc = styled.div`
 `;
 
 const CertBlock = styled.div`
-    width: 100%;
-    max-width: 650px;
+    width: min(100%, 650px);
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 12px;
 `;
 
@@ -77,7 +78,7 @@ const TimelineSection = styled.div`
     margin-top: 10px;
     display: flex;
     flex-direction: column;
-    align-items: stretch;
+    align-items: center;
     justify-content: center;
     gap: 12px;
     padding: 0 16px;
@@ -85,13 +86,14 @@ const TimelineSection = styled.div`
 
     .MuiTimeline-root {
         padding: 0 !important;
-        margin: 0 !important;
+        margin: 0 auto !important;
         width: 100%;
+        align-items: center !important;
     }
 
     .MuiTimelineItem-root {
         min-width: 0;
-        width: 100%;
+        width: min(100%, 760px) !important;
     }
 
     .MuiTimelineItem-root:before {
