@@ -1,6 +1,6 @@
 import { CloseRounded, GitHub, LinkedIn } from '@mui/icons-material';
 import { Modal } from '@mui/material';
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 
 const Container = styled.div`
@@ -81,14 +81,63 @@ const LiveImage = styled.img`
     display: block;
 `;
 
+const ShotRow = styled.div`
+    display: flex;
+    gap: 14px;
+    overflow-x: auto;
+    margin-top: 28px;
+    padding: 4px 2px 10px;
+`;
+
+const Shot = styled.img`
+    height: 440px;
+    width: auto;
+    flex: 0 0 auto;
+    object-fit: cover;
+    object-position: top center;
+    border-radius: 24px;
+    border: 3px solid rgba(255, 255, 255, 0.14);
+    background: #0e1116;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.28);
+`;
+
+const LiveSwitch = styled.div`
+    display: flex;
+    gap: 8px;
+    margin-top: 16px;
+`;
+
+const SwitchButton = styled.button`
+    border: 1px solid ${({ theme, $active }) => ($active ? theme.primary : "rgba(255,255,255,0.16)")};
+    background: ${({ theme, $active }) => ($active ? theme.primary + "33" : "transparent")};
+    color: ${({ theme }) => theme.text_primary};
+    border-radius: 999px;
+    padding: 8px 14px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+`;
+
+const PhoneLive = styled.div`
+    width: min(390px, 100%);
+    height: min(68vh, 640px);
+    margin: 16px auto 0;
+    border-radius: 32px;
+    overflow: hidden;
+    border: 10px solid #111318;
+    background: #ffffff;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+`;
+
 const LiveFrame = styled.iframe`
     width: 100%;
-    height: min(72vh, 720px);
-    margin-top: 30px;
+    height: ${({ $phone }) => ($phone ? "100%" : "min(72vh, 720px)")};
+    margin-top: ${({ $phone, $tight }) => ($phone ? "0" : $tight ? "12px" : "30px")};
     border: 0;
-    border-radius: 12px;
+    border-radius: ${({ $phone }) => ($phone ? "0" : "12px")};
     background: #ffffff;
-    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.3);
+    box-shadow: ${({ $phone }) => ($phone ? "none" : "0px 0px 10px 0px rgba(0,0,0,0.3)")};
+    display: block;
 `;
 
 const Label = styled.div`
@@ -228,9 +277,17 @@ const Button = styled.a`
 `;
 
 
-const index = ({ openModal, setOpenModal }) => {
+const ProjectDetails = ({ openModal, setOpenModal }) => {
     const project = openModal?.project;
-    const showLiveSite = Boolean(project?.webapp && project?.embed);
+    const links = project?.links?.length
+        ? project.links
+        : (project?.webapp ? [{ label: "Visit Live", href: project.webapp }] : []);
+    const firstHref = links[0]?.href || "";
+    const [liveUrl, setLiveUrl] = useState(firstHref);
+    useEffect(() => {
+        setLiveUrl(firstHref);
+    }, [project?.id, firstHref]);
+    const showLiveSite = Boolean(project?.embed && liveUrl);
     const close = () => {
         const returnFocus = openModal?.returnFocus;
         setOpenModal({ state: false, project: null });
@@ -243,19 +300,53 @@ const index = ({ openModal, setOpenModal }) => {
                     <CloseButton type="button" aria-label="Close project details" onClick={close}>
                         <CloseRounded />
                     </CloseButton>
-                    {showLiveSite ? (
+                    {project?.shots?.length ? (
+                        <ShotRow>
+                            {project.shots.map((shot) => (
+                                <Shot key={shot.src} src={shot.src} alt={shot.alt} />
+                            ))}
+                        </ShotRow>
+                    ) : null}
+                    {links.length > 1 && (
+                        <LiveSwitch>
+                            {links.map((link) => (
+                                <SwitchButton
+                                    key={link.href}
+                                    type="button"
+                                    $active={liveUrl === link.href}
+                                    onClick={() => setLiveUrl(link.href)}
+                                >
+                                    {link.label}
+                                </SwitchButton>
+                            ))}
+                        </LiveSwitch>
+                    )}
+                    {showLiveSite && project?.shots?.length ? (
+                        <PhoneLive>
+                            <LiveFrame
+                                key={liveUrl}
+                                $phone
+                                src={liveUrl}
+                                title={`${project.title} live site`}
+                            />
+                        </PhoneLive>
+                    ) : showLiveSite ? (
                         <LiveFrame
-                            src={project.webapp}
+                            key={liveUrl}
+                            $tight={links.length > 1}
+                            src={liveUrl}
                             title={`${project.title} live site`}
                             loading="lazy"
                         />
                     ) : (
-                        <LiveScroll>
-                            <LiveImage
-                                src={project?.image}
-                                alt={`${project?.title || "Project"} preview`}
-                            />
-                        </LiveScroll>
+                        !project?.shots?.length && (
+                            <LiveScroll>
+                                <LiveImage
+                                    src={project?.image}
+                                    alt={`${project?.title || "Project"} preview`}
+                                />
+                            </LiveScroll>
+                        )
                     )}
                     <Title as="h2" id="project-dialog-title">{project?.title}</Title>
                     {project?.date && <Date>{project.date}</Date>}
@@ -286,9 +377,9 @@ const index = ({ openModal, setOpenModal }) => {
                     )}
                     <ButtonGroup>
                         {project?.badge && <Badge>{project.badge}</Badge>}
-                        {project?.webapp && (
-                          <Button href={project.webapp} target="_blank" rel="noopener noreferrer">Visit Live</Button>
-                        )}
+                        {links.map((link) => (
+                          <Button key={link.href} href={link.href} target="_blank" rel="noopener noreferrer">{link.label}</Button>
+                        ))}
                     </ButtonGroup>
                 </Wrapper>
             </Container>
@@ -297,4 +388,4 @@ const index = ({ openModal, setOpenModal }) => {
     )
 }
 
-export default index
+export default ProjectDetails

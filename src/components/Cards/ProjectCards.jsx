@@ -53,6 +53,31 @@ const Image = styled.img`
     transition: transform 0.45s ease;
 `
 
+const PhoneRow = styled.div`
+    height: 180px;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: 10px;
+    padding: 10px 10px 0;
+    border-radius: 10px;
+    background:
+        radial-gradient(circle at 20% 0%, rgba(133, 76, 230, 0.35), transparent 42%),
+        #12141c;
+    overflow: hidden;
+`
+
+const PhoneShot = styled.img`
+    width: 46%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    border-radius: 14px 14px 0 0;
+    border: 2px solid rgba(255, 255, 255, 0.18);
+    border-bottom: 0;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+`
+
 const Tags = styled.div`
     width: 100%;
     display: flex;
@@ -145,16 +170,24 @@ const ProjectCards = ({project,setOpenModal}) => {
             tabIndex={0}
             aria-label={`View details: ${project.title}`}
         >
-            <Image
-                src={project.image}
-                srcSet={project.srcSet}
-                sizes={project.sizes}
-                alt={`${project.title} preview`}
-                width="600"
-                height="180"
-                loading="lazy"
-                decoding="async"
-            />
+            {project.shots?.length ? (
+                <PhoneRow>
+                    {project.shots.filter((shot) => shot.alt.endsWith("home")).map((shot) => (
+                        <PhoneShot key={shot.src} src={shot.src} alt={shot.alt} />
+                    ))}
+                </PhoneRow>
+            ) : (
+                <Image
+                    src={project.image}
+                    srcSet={project.srcSet}
+                    sizes={project.sizes}
+                    alt={`${project.title} preview`}
+                    width="600"
+                    height="180"
+                    loading="lazy"
+                    decoding="async"
+                />
+            )}
             <Tags>
                 {project.tags?.map((tag) => (
                 <Tag key={tag}>{tag}</Tag>

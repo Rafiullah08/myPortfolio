@@ -203,13 +203,23 @@ export const projects = [
   {
     id: 1,
     title: "Uber-Style Ride-Hailing App",
-    date: "Tekbis client project · In development (~70% complete)",
+    date: "Tekbis client project",
     description:
-      "Building a ride-hailing/taxi mobile app in React Native and its Node.js/MongoDB backend as the full-stack developer.",
-    image: "/projects/ride-hailing.svg",
+      "Customer and driver ride-hailing apps in React Native, with a Node.js/MongoDB backend, built as the full-stack developer.",
+    image: "/projects/taxi-customer-home.webp",
+    shots: [
+      { src: "/projects/taxi-customer-home.webp", alt: "Taxi customer home" },
+      { src: "/projects/taxi-customer-signin.webp", alt: "Taxi customer sign in" },
+      { src: "/projects/taxi-driver-home.webp", alt: "Taxi driver home" },
+      { src: "/projects/taxi-driver-signin.webp", alt: "Taxi driver sign in" },
+    ],
     tags: ["React Native", "Node.js", "MongoDB"],
     category: "mobile",
-    badge: "In development",
+    embed: true,
+    links: [
+      { label: "Customer app", href: "https://mytaxiapp-customer.vercel.app/" },
+      { label: "Driver app", href: "https://mytaxiapp-driver.vercel.app/" },
+    ],
   },
   {
     id: 2,
